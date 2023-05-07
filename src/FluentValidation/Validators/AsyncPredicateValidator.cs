@@ -35,7 +35,7 @@ namespace FluentValidation.Validators {
 		/// <param name="predicate"></param>
 		public AsyncPredicateValidator(Func<object, object, PropertyValidatorContext, CancellationToken, Task<bool>> predicate) {
 			predicate.Guard("A predicate must be specified.", nameof(predicate));
-			this._predicate = predicate;
+			_predicate = predicate;
 		}
 
 		protected override Task<bool> IsValidAsync(PropertyValidatorContext context, CancellationToken cancellation) {
@@ -44,7 +44,17 @@ namespace FluentValidation.Validators {
 
 		protected override bool IsValid(PropertyValidatorContext context) {
 			//TODO: For FV 9, throw an exception by default if async validator is being executed synchronously.
+#if NET40
+			bool returnValue=false;
+			var task = new Task(async () => {
+				returnValue=await IsValidAsync(context, new CancellationToken());
+			});
+			task.Start();
+			task.Wait();
+			return returnValue;
+#else
 			return Task.Run(() => IsValidAsync(context, new CancellationToken())).GetAwaiter().GetResult();
+#endif
 		}
 
 		public override bool ShouldValidateAsynchronously(IValidationContext context) {

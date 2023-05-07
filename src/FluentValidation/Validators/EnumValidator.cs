@@ -20,6 +20,7 @@
 
 namespace FluentValidation.Validators {
 	using System;
+	using System.Linq;
 	using System.Reflection;
 	using FluentValidation.Internal;
 	using Resources;
@@ -28,7 +29,7 @@ namespace FluentValidation.Validators {
 		private readonly Type _enumType;
 
 		public EnumValidator(Type enumType) {
-			this._enumType = enumType;
+			_enumType = enumType;
 		}
 
 		protected override bool IsValid(PropertyValidatorContext context) {
@@ -38,8 +39,13 @@ namespace FluentValidation.Validators {
 
 			if (!underlyingEnumType.IsEnum) return false;
 
+#if NET40
+			if (underlyingEnumType.GetCustomAttributes(typeof(FlagsAttribute), true)?.FirstOrDefault() != null) {
+				return IsFlagsEnumDefined(underlyingEnumType, context.PropertyValue);
+#else
 			if (underlyingEnumType.GetCustomAttribute<FlagsAttribute>() != null) {
 				return IsFlagsEnumDefined(underlyingEnumType, context.PropertyValue);
+#endif
 			}
 
 			return Enum.IsDefined(underlyingEnumType, context.PropertyValue);

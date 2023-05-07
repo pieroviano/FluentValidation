@@ -28,7 +28,17 @@ namespace FluentValidation.Validators {
 		public abstract IEnumerable<ValidationFailure> Validate(PropertyValidatorContext context);
 
 		public virtual Task<IEnumerable<ValidationFailure>> ValidateAsync(PropertyValidatorContext context, CancellationToken cancellation) {
+#if NET40
+			IEnumerable<ValidationFailure> validationFailures;
+			var validateAsync = new Task<IEnumerable<ValidationFailure>>(()=> {
+				validationFailures = Validate(context);
+				return validationFailures;
+			});
+			validateAsync.Start();
+			return validateAsync;
+#else
 			return Task.FromResult(Validate(context));
+#endif
 		}
 
 		public virtual bool ShouldValidateAsynchronously(IValidationContext context) {

@@ -58,7 +58,11 @@ namespace FluentValidation.Validators {
 
 		private static Regex CreateRegEx() {
 			const RegexOptions options = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture;
-			return new Regex(_expression, options, TimeSpan.FromSeconds(2.0));
+			return new Regex(_expression, options
+#if !NET40
+				, TimeSpan.FromSeconds(2.0)
+#endif
+				);
 		}
 
 		protected override string GetDefaultMessageTemplate() {

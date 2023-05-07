@@ -1,6 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <IncludeSymbols Condition="'$(Configuration)'=='Debug'">true</IncludeSymbols>
+    <SymbolPackageFormat Condition="'$(Configuration)'=='Debug'">snupkg</SymbolPackageFormat>
+    <IncludeSymbols Condition="'$(Configuration)'!='Debug'">false</IncludeSymbols>
+    <TargetFrameworks>netstandard2.0;net461;net45;net40</TargetFrameworks>
     <Description>A validation library for .NET that uses a fluent interface to construct strongly-typed validation rules.</Description>
     <PackageReleaseNotes>
 FluentValidation 9 is a major release. Please read the upgrade notes at https://docs.fluentvalidation.net/en/latest/upgrading-to-9.html
@@ -74,8 +81,18 @@ Full release notes can be found at https://github.com/FluentValidation/FluentVal
     <DebugType>embedded</DebugType>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Net35.Actions" Version="1.1.0-at20230430033601" />
+    <PackageReference Include="NuGetUtility" Version="$(NuGetUtilityVersion)" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Net4x.AsyncBridge" Version="$(Net4xAsyncBridgeVersion).$(VersionBuildSuffix)" />
+    <PackageReference Include="Net4x.BaseTypes" Version="$(Net4xBaseTypesVersion).$(VersionBuildSuffix)" />
+  </ItemGroup>
   <PropertyGroup>
     <NoWarn>1591</NoWarn>
+    <PackageId>Net4x.FluentValidation</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs" Link="CommonAssemblyInfo.cs" />
@@ -84,4 +101,5 @@ Full release notes can be found at https://github.com/FluentValidation/FluentVal
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
+  <Import Project="$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets')" />
 </Project>

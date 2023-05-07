@@ -65,7 +65,11 @@ namespace FluentValidation.Validators {
 		}
 
 		private static Regex CreateRegex(string expression, RegexOptions options=RegexOptions.None) {
-			return new Regex(expression, options, TimeSpan.FromSeconds(2.0));
+			return new Regex(expression, options
+#if !NET40
+				, TimeSpan.FromSeconds(2.0)
+#endif
+				);
 		}
 
 		public string Expression { get; }
