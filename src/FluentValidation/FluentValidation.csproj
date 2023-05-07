@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
+    <FluentValidationVersion Condition="'$(FluentValidationVersion)' == ''">9.2.2</FluentValidationVersion>
+    <Version>$(FluentValidationVersion)$(Suffix)</Version>
     <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>true</IncludeBuildOutput>
