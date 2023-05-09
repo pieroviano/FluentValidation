@@ -2,6 +2,8 @@
   <Import Project="$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0;net7.0</TargetFrameworks>
+    <FluentValidationVersion Condition="'$(FluentValidationVersion)' == ''">9.2.2</FluentValidationVersion>
+    <Version>$(FluentValidationVersion)$(Suffix)</Version>
     <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>true</IncludeBuildOutput>
