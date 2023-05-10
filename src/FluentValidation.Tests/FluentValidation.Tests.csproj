@@ -2,10 +2,7 @@
   <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
     <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
-  </PropertyGroup>
-  <PropertyGroup>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-  </PropertyGroup>  <PropertyGroup>
     <TargetFrameworks>net461;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
     <AssemblyName>FluentValidation.Tests</AssemblyName>
     <RootNamespace>FluentValidation.Tests</RootNamespace>

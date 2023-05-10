@@ -1,5 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
+    <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Version>$(VersionPrefix).$(VersionSuffix)</Version>
     <TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
     <AssemblyName>FluentValidation.AspNetCore</AssemblyName>
     <PackageId>Net4x.FluentValidation.AspNetCore</PackageId>
@@ -83,8 +91,14 @@ Full release notes can be found at https://github.com/FluentValidation/FluentVal
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Net35.Actions" Version="$(Net35ActionsVersion).$(VersionBuildSuffix)" />
+    <PackageReference Include="Net4x.AsyncBridge" Version="$(Net4xAsyncBridgeVersion).$(VersionBuildSuffix)" />
+    <PackageReference Include="Net4x.BaseTypes" Version="$(Net4xBaseTypesVersion).$(VersionBuildSuffix)" />
+    <PackageReference Include="NuGetUtility" Version="$(NuGetUtilityVersion)" PrivateAssets="All" />
+
     <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" />
     <ProjectReference Include="..\FluentValidation.DependencyInjectionExtensions\FluentValidation.DependencyInjectionExtensions.csproj" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
+  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets')" />
 </Project>
