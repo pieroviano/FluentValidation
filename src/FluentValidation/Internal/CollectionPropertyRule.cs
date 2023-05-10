@@ -88,7 +88,13 @@ internal class CollectionPropertyRule<T, TElement> : RuleBase<T, IEnumerable<TEl
 		return new CollectionPropertyRule<T, TElement>(member, PropertyFunc, expression, cascadeModeThunk, typeof(TOriginal));
 	}
 
-	async ValueTask IValidationRuleInternal<T>.ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
+	async
+#if NET40 || NET45 ||  NET461
+		Task
+#else
+		ValueTask
+#endif
+		IValidationRuleInternal<T>.ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
 		string displayName = GetDisplayName(context);
 
 		if (PropertyName == null && displayName == null) {
@@ -207,7 +213,13 @@ internal class CollectionPropertyRule<T, TElement> : RuleBase<T, IEnumerable<TEl
 		DependentRules.AddRange(rules);
 	}
 
-	private async ValueTask<List<RuleComponent<T,TElement>>> GetValidatorsToExecuteAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
+	private async
+#if NET40 || NET45 || NET461
+		Task
+#else
+		ValueTask
+#endif
+		<List<RuleComponent<T,TElement>>> GetValidatorsToExecuteAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
 		// Loop over each validator and check if its condition allows it to run.
 		// This needs to be done prior to the main loop as within a collection rule
 		// validators' conditions still act upon the root object, not upon the collection property.

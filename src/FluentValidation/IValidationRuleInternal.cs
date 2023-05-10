@@ -24,7 +24,12 @@ using System.Threading.Tasks;
 using Internal;
 
 internal interface IValidationRuleInternal<T> : IValidationRule<T> {
-	ValueTask ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation);
+#if NET40 || NET45 || NET461
+	Task
+#else
+		ValueTask
+#endif
+		ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation);
 
 	void AddDependentRules(IEnumerable<IValidationRuleInternal<T>> rules);
 }

@@ -52,7 +52,13 @@ internal class IncludeRule<T> : PropertyRule<T, T>, IIncludeRule {
 		return new IncludeRule<T>((ctx, _) => func(ctx.InstanceToValidate), cascadeModeThunk, typeof(T), typeof(TValidator));
 	}
 
-	public override async ValueTask ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
+	public override async
+#if NET40 || NET45 || NET461
+		Task
+#else
+		ValueTask
+#endif
+		ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
 		// Special handling for the MemberName selector.
 		// We need to disable the MemberName selector's cascade functionality whilst executing
 		// an include rule, as an include rule should be have as if its children are actually children of the parent.

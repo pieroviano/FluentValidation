@@ -9,15 +9,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Build.bat = Build.bat
 		Changelog.txt = Changelog.txt
 		src\Directory.Build.props = src\Directory.Build.props
+		..\NuGetUtility\NuGetUtility\Directory.NuGet.props = ..\NuGetUtility\NuGetUtility\Directory.NuGet.props
+		nuget.config = nuget.config
 		Properties\Version.txt = Properties\Version.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.Tests", "src\FluentValidation.Tests\FluentValidation.Tests.csproj", "{E353A6E3-5404-4E1E-B33D-4C7BAE646752}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation", "src\FluentValidation\FluentValidation.csproj", "{9DB6A8B4-5C9A-4CA1-96A5-4E1E4C3A9A44}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.DependencyInjectionExtensions", "src\FluentValidation.DependencyInjectionExtensions\FluentValidation.DependencyInjectionExtensions.csproj", "{A6E791BA-E0AA-4852-95C3-255B3D62980F}"
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.Tests.AspNetCore", "src\FluentValidation.Tests.AspNetCore\FluentValidation.Tests.AspNetCore.csproj", "{3DFE3035-9685-4B76-AF21-074BCD8F69B7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentValidation.DependencyInjectionExtensions", "src\FluentValidation.DependencyInjectionExtensions\FluentValidation.DependencyInjectionExtensions.csproj", "{A6E791BA-E0AA-4852-95C3-255B3D62980F}"
 EndProject
@@ -53,7 +52,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E353A6E3-5404-4E1E-B33D-4C7BAE646752} = {A4DBBCAB-6D67-4A5B-8460-01FC527F5A2F}
-		{3DFE3035-9685-4B76-AF21-074BCD8F69B7} = {A4DBBCAB-6D67-4A5B-8460-01FC527F5A2F}
 		{BC2CC9AB-C044-420C-9AD3-A4854F8338F0} = {A4DBBCAB-6D67-4A5B-8460-01FC527F5A2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

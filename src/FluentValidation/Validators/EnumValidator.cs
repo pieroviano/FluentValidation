@@ -21,6 +21,7 @@
 namespace FluentValidation.Validators;
 
 using System;
+using System.Linq;
 using System.Reflection;
 
 public class EnumValidator<T, TProperty> : PropertyValidator<T,TProperty> {
@@ -35,7 +36,11 @@ public class EnumValidator<T, TProperty> : PropertyValidator<T,TProperty> {
 
 		if (!underlyingEnumType.IsEnum) return false;
 
+#if NET40
+		if (underlyingEnumType.GetCustomAttributes(typeof(FlagsAttribute), true).FirstOrDefault() != null) {
+#else
 		if (underlyingEnumType.GetCustomAttribute<FlagsAttribute>() != null) {
+#endif
 			return IsFlagsEnumDefined(underlyingEnumType, value);
 		}
 

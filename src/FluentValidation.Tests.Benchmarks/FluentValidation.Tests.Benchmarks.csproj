@@ -1,4 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
+  <PropertyGroup>
+    <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+  </PropertyGroup>
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,10 +16,13 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
     <PackageReference Include="Bogus" Version="30.0.2" />
+
+    <PackageReference Include="NuGetUtility" Version="$(NuGetUtilityVersion)" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" />
+    <ProjectReference Include="..\FluentValidation.DependencyInjectionExtensions\FluentValidation.DependencyInjectionExtensions.csproj" />
+    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" PrivateAssets="All" />
   </ItemGroup>
-
+  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets')" />
 </Project>

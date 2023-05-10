@@ -81,7 +81,13 @@ internal class PropertyRule<T, TProperty> : RuleBase<T, TProperty, TProperty>, I
 	/// When set to False, an exception will be thrown if a component can only be executed asynchronously or if a component has an async condition associated with it.
 	/// </param>
 	/// <param name="cancellation"></param>
-	public virtual async ValueTask ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
+	public virtual async
+#if NET40 || NET45 || NET461
+		Task
+#else
+		ValueTask
+#endif
+		ValidateAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
 		string displayName = GetDisplayName(context);
 
 		if (PropertyName == null && displayName == null) {

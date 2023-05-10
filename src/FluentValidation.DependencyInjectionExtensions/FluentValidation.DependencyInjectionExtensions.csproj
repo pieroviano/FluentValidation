@@ -1,34 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-        <AssemblyName>FluentValidation.DependencyInjectionExtensions</AssemblyName>
-        <PackageId>Net4x.FluentValidation.DependencyInjectionExtensions</PackageId>
-        <Product>FluentValidation.DependencyInjectionExtensions</Product>
-        <RootNamespace>FluentValidation</RootNamespace>
-        <Description>Dependency injection extensions for FluentValidation</Description>
-        <PackageReleaseNotes>
-            Full release notes can be found at https://github.com/FluentValidation/FluentValidation/releases
-        </PackageReleaseNotes>
-        <SignAssembly>True</SignAssembly>
-        <DelaySign>False</DelaySign>
-        <DocumentationFile Condition="'$(Configuration)'=='Release'">bin\$(Configuration)\$(TargetFramework)\FluentValidation.DependencyInjectionExtensions.xml</DocumentationFile>
-        <DebugType>embedded</DebugType>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <EnablePackageValidation>true</EnablePackageValidation>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-        <ContinuousIntegrationBuild Condition="'$(Configuration)'=='Release'">true</ContinuousIntegrationBuild>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Include="..\CommonAssemblyInfo.cs" Link="CommonAssemblyInfo.cs" />
-        <None Include="README.md" Pack="true" PackagePath="\"/>
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Dependencyinjection.Abstractions" Version="2.1.0" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.*" PrivateAssets="All" />
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net40;net461;netstandard2.0;netstandard2.1;</TargetFrameworks>
+    <AssemblyName>FluentValidation.DependencyInjectionExtensions</AssemblyName>
+    <PackageId>Net4x.FluentValidation.DependencyInjectionExtensions</PackageId>
+    <Product>FluentValidation.DependencyInjectionExtensions</Product>
+    <RootNamespace>FluentValidation</RootNamespace>
+    <Description>Dependency injection extensions for FluentValidation</Description>
+    <PackageReleaseNotes>
+      Full release notes can be found at https://github.com/FluentValidation/FluentValidation/releases
+    </PackageReleaseNotes>
+    <SignAssembly>True</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <DocumentationFile Condition="'$(Configuration)'=='Release'">bin\$(Configuration)\$(TargetFramework)\FluentValidation.DependencyInjectionExtensions.xml</DocumentationFile>
+    <DebugType>embedded</DebugType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <ContinuousIntegrationBuild Condition="'$(Configuration)'=='Release'">true</ContinuousIntegrationBuild>
+    <Version>$(VersionPrefix).$(VersionSuffix)</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <VersionBuildSuffix Condition="'$(Configuration)'!='Release'">*-*</VersionBuildSuffix>
+    <VersionBuildSuffix Condition="'$(Configuration)'=='Release'">*</VersionBuildSuffix>
+    <NoWarn>1591;CS3001;CS3002;NU1102;NU1603;</NoWarn>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\CommonAssemblyInfo.cs" Link="CommonAssemblyInfo.cs" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Net35.Actions" Version="$(Net35ActionsVersion).*-*" Condition="'$(Conficuration)'!='Release'" />
+    <PackageReference Include="Net4x.AsyncBridge" Version="$(Net4xAsyncBridgeVersion).*-*" Condition="'$(Conficuration)'!='Release'" />
+    <PackageReference Include="Net4x.BaseTypes" Version="$(Net4xBaseTypesVersion).*-*" Condition="'$(Conficuration)'!='Release'" />
+    <PackageReference Include="Net35.Actions" Version="$(Net35ActionsVersion).*" Condition="'$(Conficuration)'=='Release'" />
+    <PackageReference Include="Net4x.AsyncBridge" Version="$(Net4xAsyncBridgeVersion).*" Condition="'$(Conficuration)'=='Release'" />
+    <PackageReference Include="Net4x.BaseTypes" Version="$(Net4xBaseTypesVersion).*" Condition="'$(Conficuration)'=='Release'" />
+
+    <PackageReference Include="Microsoft.Extensions.Dependencyinjection.Abstractions" Version="2.1.0" Condition="'$(TargetFramework)'=='netstandard2.0' or '$(TargetFramework)'=='netstandard2.1' or '$(TargetFramework)'=='net461'" />
+    <PackageReference Include="Net4x.Extensions.Dependencyinjection.Abstractions" Version="$(Net4xExtensionsVersion).*-*" Condition="'$(Conficuration)'!='Release' and '$(TargetFramework)'=='net35' or '$(TargetFramework)'=='net40'" />
+    <PackageReference Include="Net4x.Extensions.Dependencyinjection.Abstractions" Version="$(Net4xExtensionsVersion).*" Condition="'$(Conficuration)'=='Release' and '$(TargetFramework)'=='net35' or '$(TargetFramework)'=='net40'" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" PrivateAssets="All" />
+  </ItemGroup>
 </Project>

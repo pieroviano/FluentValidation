@@ -20,6 +20,7 @@ namespace FluentValidation.Validators;
 
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 public class RegularExpressionValidator<T> : PropertyValidator<T,string>, IRegularExpressionValidator {
 	readonly Func<T, Regex> _regexFunc;
@@ -71,7 +72,11 @@ public class RegularExpressionValidator<T> : PropertyValidator<T,string>, IRegul
 	}
 
 	private static Regex CreateRegex(string expression, RegexOptions options=RegexOptions.None) {
+#if NET40
+		return new Regex(expression, options);
+#else
 		return new Regex(expression, options, TimeSpan.FromSeconds(2.0));
+#endif
 	}
 
 	public string Expression { get; }

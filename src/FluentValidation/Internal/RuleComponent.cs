@@ -63,7 +63,13 @@ public class RuleComponent<T,TProperty> : IRuleComponent<T,TProperty> {
 	private protected virtual bool SupportsSynchronousValidation
 		=> _propertyValidator != null;
 
-	internal async ValueTask<bool> ValidateAsync(ValidationContext<T> context, TProperty value, bool useAsync, CancellationToken cancellation) {
+	internal async
+#if NET40 || NET45 || NET461
+		Task
+#else
+		ValueTask
+#endif
+		<bool> ValidateAsync(ValidationContext<T> context, TProperty value, bool useAsync, CancellationToken cancellation) {
 		if (useAsync) {
 			// If ValidateAsync has been called on the root validator, then always prefer
 			// the asynchronous property validator (if available).

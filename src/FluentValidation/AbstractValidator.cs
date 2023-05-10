@@ -192,7 +192,12 @@ public abstract class AbstractValidator<T> : IValidator<T>, IEnumerable<IValidat
 		// This technique is used by Microsoft within the .net runtime to avoid duplicate code paths for sync/async.
 		// See https://www.thereformedprogrammer.net/using-valuetask-to-create-methods-that-can-work-as-sync-or-async/
 		try {
-			ValueTask<ValidationResult> completedValueTask
+#if NET40 || NET45 || NET461
+			Task
+#else
+		ValueTask
+#endif
+				<ValidationResult> completedValueTask
 				= ValidateInternalAsync(context, useAsync: false, default);
 
 			// Sync tasks should always be completed.
@@ -220,7 +225,13 @@ public abstract class AbstractValidator<T> : IValidator<T>, IEnumerable<IValidat
 		return await ValidateInternalAsync(context, useAsync: true, cancellation);
 	}
 
-	private async ValueTask<ValidationResult> ValidateInternalAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
+	private async
+#if NET40 || NET45 || NET461
+		Task
+#else
+		ValueTask
+#endif
+		<ValidationResult> ValidateInternalAsync(ValidationContext<T> context, bool useAsync, CancellationToken cancellation) {
 		var result = new ValidationResult(context.Failures);
 		bool shouldContinue = PreValidate(context, result);
 

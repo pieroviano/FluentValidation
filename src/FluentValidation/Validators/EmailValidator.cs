@@ -19,6 +19,7 @@
 namespace FluentValidation.Validators;
 
 using System;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 
 /// <summary>
@@ -60,7 +61,11 @@ public class EmailValidator<T> : PropertyValidator<T,string>, IRegularExpression
 
 	private static Regex CreateRegEx() {
 		const RegexOptions options = RegexOptions.Compiled | RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture;
+#if NET40
+		return new Regex(_expression, options);
+#else
 		return new Regex(_expression, options, TimeSpan.FromSeconds(2.0));
+#endif
 	}
 
 	protected override string GetDefaultMessageTemplate(string errorCode) {

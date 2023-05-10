@@ -1,13 +1,10 @@
 <Project>
+  <Import Project="Directory.NuGet.props" />
   <PropertyGroup>
-    <VersionPrefix>11.5.2</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
     <!-- Use CI build number as version suffix (if defined) -->
     <!--<VersionSuffix Condition="'$(GITHUB_RUN_NUMBER)'!=''">ci-$(GITHUB_RUN_NUMBER)</VersionSuffix>-->
     <Authors>Jeremy Skinner</Authors>
     <LangVersion>10</LangVersion>
-    <NoWarn>$(NoWarn);1701;1702;1591</NoWarn>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <PackageProjectUrl>https://fluentvalidation.net</PackageProjectUrl>
     <Copyright>Copyright (c) Jeremy Skinner, .NET Foundation, and contributors 2008-2023</Copyright>
     <RepositoryUrl>https://github.com/JeremySkinner/fluentvalidation</RepositoryUrl>
@@ -17,7 +14,8 @@
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)/../FluentValidation-Release.snk</AssemblyOriginatorKeyFile>
     <PackageOutputPath>$(MSBuildProjectDirectory)/../../.build/packages</PackageOutputPath>
-    <PackageValidationBaselineVersion>11.0.0</PackageValidationBaselineVersion>
+    <VersionPrefix>$(FluentValidationVersion)</VersionPrefix>
+    <VersionSuffix>0-at20230510025343</VersionSuffix>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\logo\fluent-validation-icon.png" Pack="true" PackagePath="" />

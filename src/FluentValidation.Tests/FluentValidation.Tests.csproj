@@ -1,5 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
+    <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+  </PropertyGroup>  <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <AssemblyName>FluentValidation.Tests</AssemblyName>
     <RootNamespace>FluentValidation.Tests</RootNamespace>
@@ -20,9 +26,12 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
     <PackageReference Include="xunit" Version="2.2.0" />
+
+    <PackageReference Include="NuGetUtility" Version="$(NuGetUtilityVersion)" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" />
+    <ProjectReference Include="..\FluentValidation.DependencyInjectionExtensions\FluentValidation.DependencyInjectionExtensions.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="TestMessages.Designer.cs">
@@ -43,4 +52,5 @@
       <LastGenOutput>TestMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets')" />
 </Project>
