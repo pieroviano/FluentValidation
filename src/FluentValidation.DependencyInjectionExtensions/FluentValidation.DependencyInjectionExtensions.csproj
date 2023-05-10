@@ -20,13 +20,12 @@
     <ContinuousIntegrationBuild Condition="'$(Configuration)'=='Release'">true</ContinuousIntegrationBuild>
     <Version>$(VersionPrefix).$(VersionSuffix)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-
     <VersionBuildSuffix Condition="'$(Configuration)'!='Release'">*-*</VersionBuildSuffix>
     <VersionBuildSuffix Condition="'$(Configuration)'=='Release'">*</VersionBuildSuffix>
     <NoWarn>1591;CS3001;CS3002;NU1102;NU1603;</NoWarn>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\CommonAssemblyInfo.cs" Link="CommonAssemblyInfo.cs" />
