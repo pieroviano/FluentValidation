@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
-    <FluentValidationVersion Condition="'$(FluentValidationVersion)' == ''">9.2.2</FluentValidationVersion>
-    <Version>$(FluentValidationVersion)$(Suffix)</Version>
+    <FluentValidation9Version Condition="'$(FluentValidation9Version)' == ''">9.2.2</FluentValidation9Version>
+    <Version>$(VersionPrefix).$(VersionSuffix)</Version>
     <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>true</IncludeBuildOutput>
@@ -84,12 +84,10 @@ Full release notes can be found at https://github.com/FluentValidation/FluentVal
     <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Net35.Actions" Version="1.1.0-at20230430033601" />
-    <PackageReference Include="NuGetUtility" Version="$(NuGetUtilityVersion)" PrivateAssets="All" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="Net35.Actions" Version="$(Net35ActionsVersion).$(VersionBuildSuffix)" />
     <PackageReference Include="Net4x.AsyncBridge" Version="$(Net4xAsyncBridgeVersion).$(VersionBuildSuffix)" />
     <PackageReference Include="Net4x.BaseTypes" Version="$(Net4xBaseTypesVersion).$(VersionBuildSuffix)" />
+    <PackageReference Include="NuGetUtility" Version="$(NuGetUtilityVersion)" PrivateAssets="All" />
   </ItemGroup>
   <PropertyGroup>
     <NoWarn>1591</NoWarn>
