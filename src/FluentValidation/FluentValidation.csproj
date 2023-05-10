@@ -27,7 +27,7 @@ Full release notes can be found at https://github.com/FluentValidation/FluentVal
 
     <NoWarn>1591;CS3001;CS3002;NU1102;NU1603;</NoWarn>
     <PackageId>Net4x.FluentValidation</PackageId>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
