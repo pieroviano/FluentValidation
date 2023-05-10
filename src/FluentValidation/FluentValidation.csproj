@@ -93,7 +93,7 @@ Full release notes can be found at https://github.com/FluentValidation/FluentVal
   </ItemGroup>
   <PropertyGroup>
     <NoWarn>1591</NoWarn>
-    <PackageId>Net4x.FluentValidation</PackageId>
+    <PackageId>Net4x.FluentValidation9.Library</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
