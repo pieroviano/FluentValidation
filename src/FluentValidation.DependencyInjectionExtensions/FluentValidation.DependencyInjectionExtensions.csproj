@@ -1,15 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
     <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>
-  </PropertyGroup>
-  <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-  </PropertyGroup>  <PropertyGroup>
     <Version>$(VersionPrefix).$(VersionSuffix)</Version>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>FluentValidation.DependencyInjectionExtensions</AssemblyName>
-    <PackageId>Net4x.FluentValidation.DependencyInjectionExtensions</PackageId>
+    <PackageId>Net4x.FluentValidation9.DependencyInjectionExtensions</PackageId>
     <Product>FluentValidation.DependencyInjectionExtensions</Product>
     <Description>Dependency injection extensions for FluentValidation</Description>
     <PackageReleaseNotes>
@@ -36,5 +33,5 @@
   <ItemGroup>
     <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" />
   </ItemGroup>
-  <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets')" />
+  <Import Project="$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.targets')" />
 </Project>
