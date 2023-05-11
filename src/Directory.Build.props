@@ -1,5 +1,5 @@
 <Project>
-  <Import Project="Directory.NuGet.props" />
+  <Import Project=",,\Directory.NuGet.props" />
   <PropertyGroup>
     <!-- Use CI build number as version suffix (if defined) -->
     <!--<VersionSuffix Condition="'$(GITHUB_RUN_NUMBER)'!=''">ci-$(GITHUB_RUN_NUMBER)</VersionSuffix>-->
