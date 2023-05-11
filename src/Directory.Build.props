@@ -13,7 +13,6 @@
     <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)/../FluentValidation-Release.snk</AssemblyOriginatorKeyFile>
-    <PackageOutputPath>$(MSBuildProjectDirectory)/../../.build/packages</PackageOutputPath>
     <VersionPrefix>$(FluentValidationVersion)</VersionPrefix>
     <VersionSuffix>0-at20230510025343</VersionSuffix>
   </PropertyGroup>
