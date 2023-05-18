@@ -1,5 +1,6 @@
 <Project>
-  <Import Project=",,\Directory.NuGet.props" />
+  <Import Project="..\Directory.NuGet.props" />
+  <Import Project="..\Directory.NuGet.props" />
   <PropertyGroup>
     <!-- Use CI build number as version suffix (if defined) -->
     <Authors>Jeremy Skinner</Authors>
@@ -13,7 +14,8 @@
     <NeutralLanguage>en</NeutralLanguage>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)/../FluentValidation-Release.snk</AssemblyOriginatorKeyFile>
     <VersionPrefix>$(FluentValidationVersion)</VersionPrefix>
-    <VersionSuffix>0-at20230510025343</VersionSuffix>
+    <VersionSuffix Condition="'$(Configuration)'!='Release'">0-at20230516071633</VersionSuffix>
+    <VersionSuffix Condition="'$(Configuration)'=='Release'">0</VersionSuffix>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\logo\fluent-validation-icon.png" Pack="true" PackagePath="" />

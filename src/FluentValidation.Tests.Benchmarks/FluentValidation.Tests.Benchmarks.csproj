@@ -1,4 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
+<PropertyGroup><Version>$(VersionPrefix).$(VersionSuffix)</Version></PropertyGroup>
   <Import Project = "$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props" Condition="Exists('$(NuGetPackageRoot)nugetutility/$(NuGetUtilityVersion)/build/NuGet.Utility.props')" />
   <PropertyGroup>
     <PackageOutputPath>$(SolutionDir)Packages/</PackageOutputPath>

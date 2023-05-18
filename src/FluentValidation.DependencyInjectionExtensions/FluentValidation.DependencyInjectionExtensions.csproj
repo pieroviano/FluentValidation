@@ -44,6 +44,6 @@
     <PackageReference Include="Net4x.Extensions.Dependencyinjection.Abstractions" Version="$(Net4xExtensionsVersion).*" Condition="'$(Conficuration)'=='Release' and '$(TargetFramework)'=='net35' or '$(TargetFramework)'=='net40'" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" />
   </ItemGroup>
 </Project>
