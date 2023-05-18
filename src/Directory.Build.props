@@ -2,7 +2,6 @@
   <Import Project="..\Directory.NuGet.props" />
   <PropertyGroup>
     <!-- Use CI build number as version suffix (if defined) -->
-    <!--<VersionSuffix Condition="'$(GITHUB_RUN_NUMBER)'!=''">ci-$(GITHUB_RUN_NUMBER)</VersionSuffix>-->
     <Authors>Jeremy Skinner</Authors>
     <LangVersion>10</LangVersion>
     <PackageProjectUrl>https://fluentvalidation.net</PackageProjectUrl>
@@ -15,7 +14,8 @@
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)/../FluentValidation-Release.snk</AssemblyOriginatorKeyFile>
     <FluentValidation9Version>9.2.2</FluentValidation9Version>
     <VersionPrefix>$(FluentValidation9Version)</VersionPrefix>
-    <VersionSuffix>0-at20230510025343</VersionSuffix>
+    <VersionSuffix Condition="'$(Configuration)'!='Release'">0-at20230516071633</VersionSuffix>
+    <VersionSuffix Condition="'$(Configuration)'=='Release'">0</VersionSuffix>
   </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\logo\fluent-validation-icon.png" Pack="true" PackagePath="" />
